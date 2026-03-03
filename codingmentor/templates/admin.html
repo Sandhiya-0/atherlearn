@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AETHERLEARN - Admin Panel</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top right, #111827, #0f172a 60%);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        .logo {
+            font-size: 40px;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, #facc15, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            color: #aaa;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 25px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(250,204,21,0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #facc15;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 12px;
+            background: #1e293b;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+        }
+
+        tr:hover td {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .logout-btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #facc15, #f97316);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            box-shadow: 0 0 20px #f97316;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">ADMIN CONTROL NODE</div>
+        <div class="subtitle">Authenticated as: {{ admin }}</div>
+    </div>
+
+    <div class="container">
+
+        <h2>Registered Users</h2>
+
+        <table>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>User ID</th>
+            </tr>
+
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <a href="/logout">
+            <button class="logout-btn">Logout</button>
+        </a>
+
+    </div>
+
+</body>
+</html>

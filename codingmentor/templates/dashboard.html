@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AETHERLEARN Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top left, #1a1f4f, #0c0f2a 60%);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        .logo {
+            font-size: 42px;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, #a855f7, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 25px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 30px rgba(168,85,247,0.2);
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            border-radius: 15px;
+            border: none;
+            padding: 15px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            resize: none;
+            outline: none;
+            font-family: monospace;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(90deg, #22d3ee, #a855f7);
+            color: white;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            box-shadow: 0 0 20px #a855f7;
+        }
+
+        .info-box {
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #facc15;
+            color: black;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<a href="/logout" class="logout">Logout</a>
+
+<div class="header">
+    <div class="logo">AETHERLEARN</div>
+    <p>Welcome {{ user }}</p>
+</div>
+
+<div class="container">
+
+    <!-- LEFT PANEL -->
+    <div class="card">
+        <h2>Logic Input</h2>
+
+        <form id="mentorForm">
+            <textarea name="code" id="codeInput"
+                placeholder="Paste your buggy code here..."></textarea>
+
+            <button type="submit" class="button">
+                Initiate Guidance
+            </button>
+        </form>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="card">
+
+        <div class="info-box" id="conceptBox">
+            Concept analysis will appear here...
+        </div>
+
+        <div class="info-box" id="analogyBox">
+            Analogy explanation will appear here...
+        </div>
+
+        <div class="info-box" id="hintBox">
+            Socratic hint will appear here...
+        </div>
+
+        <!-- HISTORY SECTION -->
+        <div class="info-box">
+            <h3>Recent Attempts</h3>
+
+            {% if history %}
+                {% for item in history %}
+                    <div style="margin-bottom:10px; padding:10px; background:rgba(255,255,255,0.05); border-radius:10px;">
+                        <small>{{ item[2] }}</small>
+                        <p><strong>Concept:</strong> {{ item[1] }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No previous attempts yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+document.getElementById("mentorForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const code = document.getElementById("codeInput").value;
+
+    const response = await fetch("/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "code=" + encodeURIComponent(code)
+    });
+
+    const data = await response.json();
+
+    document.getElementById("conceptBox").innerText = data.concept;
+    document.getElementById("analogyBox").innerText = data.analogy;
+    document.getElementById("hintBox").innerText = data.hint;
+
+
+});
+</script>
+
+</body>
+</html>

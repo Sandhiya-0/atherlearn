@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* CARD */
+.login-card {
+    width: 480px;
+    padding: 60px 50px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 30px;
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 70px rgba(0, 255, 255, 0.2);
+    text-align: center;
+    color: white;
+}
+
+/* LOGO */
+.logo {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* TAGLINE */
+.tagline {
+    font-size: 13px;
+    color: #bbb;
+    margin-bottom: 35px;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 35px;
+    font-size: 14px;
+}
+
+.tabs span {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.tabs span:hover {
+    opacity: 0.8;
+}
+
+.tabs .active {
+    opacity: 1;
+    color: #00e5ff;
+    border-bottom: 2px solid #00e5ff;
+    padding-bottom: 6px;
+}
+
+/* INPUT FIELDS */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    outline: none;
+    transition: 0.3s;
+    font-family: 'Orbitron', sans-serif;
+}
+
+input:focus {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #00e5ff;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+/* AUTOFILL FIX */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* BUTTON */
+.register-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #00c6ff, #00e5ff);
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.register-btn:hover {
+    box-shadow: 0 0 25px #00e5ff;
+}
+
+/* LOGIN LINK */
+.login-link {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #00e5ff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-link:hover {
+    text-shadow: 0 0 10px #00e5ff;
+}
+
+/* FOOTER TEXT */
+.footer-text {
+    margin-top: 35px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+}

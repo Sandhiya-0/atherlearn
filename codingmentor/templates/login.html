@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AETHERLEARN</title>
+
+    <!-- Futuristic Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-body"
+style="background: url('{{ url_for('static', filename='images/ai-bg.jpg') }}') no-repeat center center/cover;">
+
+    <div class="login-card">
+
+        <h1 class="logo">AETHERLEARN</h1>
+        <p class="tagline">Your AI Companion for Smarter Learning</p>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <span id="userTab" class="active">USER</span>
+            <span id="adminTab">ADMIN</span>
+        </div>
+
+        <!-- USER SIGNUP FORM -->
+        <form id="userForm" method="POST" action="/signup" autocomplete="off">
+
+            <!-- Hidden inputs to prevent browser autofill -->
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+
+            <input type="text" name="fullname" placeholder="Full Name"
+                   required autocomplete="off">
+
+            <input type="email" name="email" placeholder="Email Address"
+                   required autocomplete="off">
+
+            <input type="text" name="userid" placeholder="User ID"
+                   required autocomplete="off">
+
+            <input type="password" name="password" placeholder="Create Password"
+                   required autocomplete="new-password">
+
+            <button type="submit" class="register-btn">
+                REGISTER AS USER
+            </button>
+
+        </form>
+
+        <!-- USER LOGIN FORM -->
+        <form id="userLoginForm" method="POST" action="/user_login"
+              style="display:none;" autocomplete="off">
+
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+
+            <input type="text" name="userid" placeholder="User ID"
+                   required autocomplete="off">
+
+            <input type="password" name="password" placeholder="Password"
+                   required autocomplete="new-password">
+
+            <button type="submit" class="register-btn">
+                LOGIN AS USER
+            </button>
+
+        </form>
+
+        <!-- ADMIN LOGIN FORM -->
+        <form id="adminForm" method="POST" action="/admin_login"
+              style="display:none;" autocomplete="off">
+
+            <input type="text" style="display:none">
+            <input type="password" style="display:none">
+
+            <input type="text" name="adminid" placeholder="Admin ID"
+                   required autocomplete="off">
+
+            <input type="password" name="adminpass" placeholder="Admin Password"
+                   required autocomplete="new-password">
+
+            <button type="submit" class="register-btn">
+                LOGIN AS ADMIN
+            </button>
+
+        </form>
+
+        <!-- LOGIN SWITCH -->
+        <p class="login-link" id="loginSwitch">
+            Already a member? Login here
+        </p>
+
+        <p class="footer-text">
+            FORTIFIED BY INTELLIGENCE · DEFINED BY INTEGRITY · DRIVEN BY AI
+        </p>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const userTab = document.getElementById("userTab");
+        const adminTab = document.getElementById("adminTab");
+
+        const userForm = document.getElementById("userForm");
+        const adminForm = document.getElementById("adminForm");
+        const userLoginForm = document.getElementById("userLoginForm");
+        const loginSwitch = document.getElementById("loginSwitch");
+
+        userTab.addEventListener("click", () => {
+            userTab.classList.add("active");
+            adminTab.classList.remove("active");
+
+            userForm.style.display = "block";
+            userLoginForm.style.display = "none";
+            adminForm.style.display = "none";
+        });
+
+        adminTab.addEventListener("click", () => {
+            adminTab.classList.add("active");
+            userTab.classList.remove("active");
+
+            userForm.style.display = "none";
+            userLoginForm.style.display = "none";
+            adminForm.style.display = "block";
+        });
+
+        loginSwitch.addEventListener("click", () => {
+            userForm.style.display = "none";
+            adminForm.style.display = "none";
+            userLoginForm.style.display = "block";
+
+            userTab.classList.add("active");
+            adminTab.classList.remove("active");
+        });
+    </script>
+
+</body>
+</html>

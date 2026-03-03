@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coding Mentor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="left">
+            <h2>Logic Input</h2>
+            <textarea placeholder="Paste your code here..."></textarea>
+
+            <h2>Intent</h2>
+            <textarea placeholder="What are you trying to achieve?"></textarea>
+
+            <button>Initiate Guidance</button>
+        </div>
+
+        <div class="right">
+            <h2>Concept Architecture</h2>
+            <div class="box">Concept explanation will appear here.</div>
+
+            <h2>Socratic Probe</h2>
+            <div class="box">Guiding questions will appear here.</div>
+
+            <h2>Reflection Node</h2>
+            <textarea placeholder="Write your understanding here..."></textarea>
+        </div>
+    </div>
+
+</body>
+</html>
